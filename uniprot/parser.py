@@ -101,7 +101,6 @@ class UniprotParser:
     def post(self, params):
         self.headers["Content_Type"] = "form-data"
         r = requests.post(self.base_url, data=params, headers=self.headers)
-        print(r.headers)
         return r
 
     def parse(self, format="fasta", method="get"):

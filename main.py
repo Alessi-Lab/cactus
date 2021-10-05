@@ -1,6 +1,7 @@
 import asyncio
 import sys
 
+import tornado.httpserver
 from tornado.ioloop import IOLoop
 from tornado.web import Application
 
@@ -19,5 +20,8 @@ if __name__ == "__main__":
     app.add_handlers(r'(localhost|127\.0\.0\.1|62\.75\.251\.157|curtain\.proteo\.info)', [
         (r"/", MainHandler), (r"/uniprot", UniprotHandler)
     ])
-    app.listen(80)
+    server = tornado.httpserver.HTTPServer(app)
+    server.bind(80)
+
+    server.start(0)
     IOLoop.current().start()
