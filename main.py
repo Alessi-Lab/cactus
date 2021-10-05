@@ -11,16 +11,16 @@ class MainHandler(RequestHandler):
 
 
 settings = {
-    "cookie_secret": "IVM/jkpE+1A4We2P/hVxkHe8EW8mW3TR574hEpCnuGrU3H5trJCSckecA9e2zYthBbI=",
-    "xsrf_cookies": True,
+    #"cookie_secret": "IVM/jkpE+1A4We2P/hVxkHe8EW8mW3TR574hEpCnuGrU3H5trJCSckecA9e2zYthBbI=",
+    #"xsrf_cookies": True,
 }
 
 
 if __name__ == "__main__":
     if sys.platform.startswith("win32"):
         asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
-    app = Application()
-    app.add_handlers(r'(localhost|127\.0\.0\.1|62\.75\.251\.157)', [
+    app = Application(settings)
+    app.add_handlers(r'(localhost|127\.0\.0\.1|62\.75\.251\.157|curtain\.proteo\.info)', [
         (r"/", MainHandler)
     ])
     app.listen(80)
