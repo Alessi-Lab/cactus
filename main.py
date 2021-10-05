@@ -20,7 +20,7 @@ if __name__ == "__main__":
     if sys.platform.startswith("win32"):
         asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
     app = Application()
-    app.add_handlers(r'(localhost|127\.0\.0\.1|62.75.251.157/)', [
+    app.add_handlers(r'(localhost|127\.0\.0\.1|62\.75\.251\.157)', [
         (r"/", MainHandler)
     ])
     app.listen(80)
