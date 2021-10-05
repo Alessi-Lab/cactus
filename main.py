@@ -15,5 +15,5 @@ if __name__ == "__main__":
     app = Application([
         (r"/", MainHandler)
     ])
-    app.listen(8080)
+    app.listen(80)
     IOLoop.current().start()
