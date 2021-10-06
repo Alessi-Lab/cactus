@@ -18,6 +18,7 @@ settings = {
 }
 
 if __name__ == "__main__":
+    tornado.options.parse_command_line()
     if sys.platform.startswith("win32"):
         asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
     app = Application(settings)
@@ -29,6 +30,7 @@ if __name__ == "__main__":
             # (r"/static", StaticFileHandler, dict(path=settings['static_path']))
         ])
     server = tornado.httpserver.HTTPServer(app)
+    print(options.port)
     server.bind(options.port)
 
     server.start(1)
