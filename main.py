@@ -27,7 +27,8 @@ if __name__ == "__main__":
         [
         (r"/", MainHandler),
         (r"/uniprot", UniprotHandler),
-        (r"/static", StaticFileHandler, dict(path=settings['static_path']))])
+        #(r"/static", StaticFileHandler, dict(path=settings['static_path']))
+        ])
     server = tornado.httpserver.HTTPServer(app)
     server.bind(options.port)
 
