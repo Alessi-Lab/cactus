@@ -1,5 +1,6 @@
 from tornado.escape import json_decode
 from tornado.web import RequestHandler
+from tornado_sqlalchemy import SessionMixin
 
 from uniprot.parser import UniprotSequence, UniprotParser
 
@@ -23,3 +24,9 @@ class UniprotHandler(RequestHandler):
             data += p
         self.write(data)
 
+
+class FileHandler(SessionMixin, RequestHandler):
+    def post(self):
+        with self.make_session() as session:
+
+            print(self.request.body)
