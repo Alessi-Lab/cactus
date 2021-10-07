@@ -153,3 +153,4 @@ modules.xml
 # Sonarlint plugin
 
 # End of https://www.toptal.com/developers/gitignore/api/webstorm+all,pycharm+all
+*.pyc
