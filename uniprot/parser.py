@@ -115,18 +115,19 @@ class UniprotParser:
 
                 yield self.get(params).text
         elif method == "post":
+            # for i in range(0, self.total_input, 1000):
+            #     if (i + 1000) <= self.total_input:
+            #
+            #         params = self.create_params(self.acc_list[i: i + 1000], format=format)
+            #     else:
+            #
+            #         params = self.create_params(self.acc_list[i: self.total_input], format=format)
+            #     print(params)
+            #     res = self.post(params)
+            #     print(res.text)
+            #     yield res.text
             params = self.create_params(self.acc_list, format=format)
-
-            yield self.post(params).text
+            res = self.post(params)
+            yield res.text
         else:
             raise ValueError(f"method {method} is not supported")
-
-    async def async_parse(self):
-        params = self.create_params(self.acc_list)
-        client = AsyncHTTPClient()
-        self.headers["Content-Type"] = "form-data"
-        payload = urllib.parse.urlencode(params)
-        req = HTTPRequest(self.base_url, method="POST", headers=self.headers, body=payload)
-        client = AsyncHTTPClient()
-        res = await client.fetch(req)
-        return res.body
