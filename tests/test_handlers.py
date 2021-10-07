@@ -28,7 +28,7 @@ class TestFileHandler(AsyncTestCase):
     @tornado.testing.gen_test
     def test_post(self):
         with open(r"C:\Users\Toan Phung\Documents\GitHub\curtain\src\assets\DMSO_IN57.txt", "rt") as processed, open(r"C:\Users\Toan Phung\Documents\GitHub\curtain\src\assets\Rawdata.txt", "rt") as raw:
-            res = requests.put("http://localhost:8000/file_data", data=json_encode({"processed": processed.read(),
+            res = requests.put("http://localhost:8000/file_data", data=json_encode({"password": "test", "processed": processed.read(),
                "raw": raw.read()}), headers={"Content-Type": "multiplepart/form-data"})
 
         print(res)

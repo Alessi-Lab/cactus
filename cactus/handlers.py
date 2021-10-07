@@ -1,3 +1,4 @@
+import bcrypt as bcrypt
 from tornado.escape import json_decode
 from tornado.web import RequestHandler
 from tornado_sqlalchemy import SessionMixin, as_future
@@ -29,13 +30,17 @@ class UniprotHandler(RequestHandler):
 class FileHandler(SessionMixin, RequestHandler):
     async def put(self):
         with self.make_session() as session:
+            hash = ""
+            req = json_decode(self.request.body.decode("utf-8"))
+            if "password" in req:
+                if req["password"]:
+                    hash = bcrypt.hashpw(req["password"].encode("utf-8"), bcrypt.gensalt())
+
             count = await as_future(session.query(File).count)
             print(count)
-            f = File(password="", filename="test.txt")
+            f = File(password=hash, filename="test.txt")
 
             session.add(f)
-            session.flush()
-            f.filename = f"{f.id}-test.txt"
             session.commit()
             count = await as_future(session.query(File).count)
             print(count)

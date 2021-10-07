@@ -20,7 +20,8 @@ def upgrade():
     op.create_table('file',
                     sa.Column('id', sa.BigInteger().with_variant(sa.Integer, "sqlite"), primary_key=True, autoincrement=True),
                     sa.Column('password', sa.String(255), nullable=False),
-                    sa.Column('filename', sa.String(255), unique=True))
+                    sa.Column('filename', sa.String(255), unique=True),
+                    sa.Column('created_on', sa.DateTime))
 
 
 def downgrade():
