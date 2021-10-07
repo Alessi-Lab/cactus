@@ -9,10 +9,10 @@ from tornado.options import define, options
 from cactus.handlers import MainHandler, UniprotHandler, FileHandler
 
 if sys.platform.startswith("win32"):
-    database_url = "sqlite:///sql.db"
+    database_url = "sqlite:///sql.db?check_same_thread=False"
     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 else:
-    database_url = "sqlite:////root/cactus/sql.db"
+    database_url = "sqlite:////root/cactus/sql.db?check_same_thread=False"
 
 define("port", default=8000, help="Port number")
 
@@ -21,13 +21,13 @@ settings = {
     #"x-header": True
     # "cookie_secret": "IVM/jkpE+1A4We2P/hVxkHe8EW8mW3TR574hEpCnuGrU3H5trJCSckecA9e2zYthBbI=",
     # "xsrf_cookies": True,
-    "db": SQLAlchemy(database_url)
+
 }
 
 if __name__ == "__main__":
     tornado.options.parse_command_line()
 
-    app = Application(settings)
+    app = Application(db=SQLAlchemy(database_url))
     app.add_handlers(
         r'(localhost|127\.0\.0\.1|62\.75\.251\.157|curtain\.proteo\.info)',
         [

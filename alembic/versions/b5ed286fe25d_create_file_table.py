@@ -18,7 +18,7 @@ depends_on = None
 
 def upgrade():
     op.create_table('file',
-                    sa.Column('id', sa.BigInteger, primary_key=True),
+                    sa.Column('id', sa.BigInteger().with_variant(sa.Integer, "sqlite"), primary_key=True, autoincrement=True),
                     sa.Column('password', sa.String(255), nullable=False),
                     sa.Column('filename', sa.String(255), unique=True))
 

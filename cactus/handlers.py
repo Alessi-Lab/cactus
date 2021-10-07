@@ -1,7 +1,8 @@
 from tornado.escape import json_decode
 from tornado.web import RequestHandler
-from tornado_sqlalchemy import SessionMixin
+from tornado_sqlalchemy import SessionMixin, as_future
 
+from cactus.database import File
 from uniprot.parser import UniprotSequence, UniprotParser
 
 
@@ -26,7 +27,17 @@ class UniprotHandler(RequestHandler):
 
 
 class FileHandler(SessionMixin, RequestHandler):
-    def post(self):
+    async def put(self):
         with self.make_session() as session:
+            count = await as_future(session.query(File).count)
+            print(count)
+            f = File(password="", filename="test.txt")
 
-            print(self.request.body)
+            session.add(f)
+            session.flush()
+            f.filename = f"{f.id}-test.txt"
+            session.commit()
+            count = await as_future(session.query(File).count)
+            print(count)
+            print(f)
+            self.write(str(count))
