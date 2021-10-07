@@ -25,7 +25,6 @@ class TestUniprotHandler(AsyncTestCase):
         print(response.body)
 
 
-
 class TestFileHandler(AsyncTestCase):
     @tornado.testing.gen_test
     def test_post(self):
@@ -33,4 +32,15 @@ class TestFileHandler(AsyncTestCase):
             res = requests.put("http://localhost:8000/file_data", data=json_encode({"password": "test", "processed": processed.read(),
                "raw": raw.read()}), headers={"Content-Type": "multiplepart/form-data"})
 
-        print(res)
+
+class TestStringDBGetIDHandler(AsyncTestCase):
+    @tornado.testing.gen_test
+    def test_post(self):
+        client = AsyncHTTPClient()
+        data = {"id": ["MANEA_MOUSE", "DPP10_MOUSE", "ASIC1_MOUSE"], "species": 10090}
+        response = yield client.fetch(
+            "http://localhost:8000/string/getid",
+            method="POST",
+            headers={"Content-Type": "application/x-json"},
+            body=json_encode(data))
+        print(response.body)

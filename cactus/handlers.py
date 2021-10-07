@@ -4,6 +4,7 @@ from tornado.web import RequestHandler
 from tornado_sqlalchemy import SessionMixin, as_future
 
 from cactus.database import File
+from stringdb.api import StringDB
 from uniprot.parser import UniprotSequence, UniprotParser
 
 class BaseHandler(RequestHandler):
@@ -23,6 +24,30 @@ class MainHandler(BaseHandler):
         self.write("Hello, world")
 
 
+class StringDBGetIDHandler(BaseHandler):
+    async def post(self):
+        params = json_decode(self.request.body)
+        s = StringDB()
+        res = await s.get_string_ids(params["id"], params["species"])
+        self.write(res)
+
+
+class StringDBEnrichmentHandler(BaseHandler):
+    async def post(self):
+        params = json_decode(self.request.body)
+        s = StringDB()
+        res = await s.get_enrichment(params["study"], params["universe"], params["species"])
+        self.write(res)
+
+
+class StringDBInteractionHandler(BaseHandler):
+    async def post(self):
+        params = json_decode(self.request.body)
+        s = StringDB()
+        res = await s.get_interaction(params["id"], params["species"], params["network"])
+        self.write(res)
+
+
 class UniprotHandler(BaseHandler):
     def post(self):
         params = json_decode(self.request.body)
@@ -31,12 +56,10 @@ class UniprotHandler(BaseHandler):
         for a in params["acc"]:
             u = UniprotSequence(a, True)
             acc.append(str(u))
-        print(acc)
         parser = UniprotParser(acc)
         data = ""
         for p in parser.parse(format="tab", method="post"):
             data += p
-        print(data)
         self.write(data)
 
 

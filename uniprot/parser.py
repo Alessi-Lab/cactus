@@ -89,7 +89,7 @@ class UniprotParser:
             base_dict["columns"] = "id,entry name,reviewed,protein names,genes,organism,length,database(RefSeq)," \
                                    "organism-id,go-id,go(biological process),go(cellular component),go(molecular function),comment(SUBCELLULAR LOCATION)," \
                                    "feature(TOPOLOGICAL_DOMAIN),feature(GLYCOSYLATION),mass,comment(MASS SPECTROMETRY)," \
-                                   "sequence,feature(ALTERNATIVE SEQUENCE),comment(ALTERNATIVE PRODUCTS) "
+                                   "sequence,feature(ALTERNATIVE SEQUENCE),comment(ALTERNATIVE PRODUCTS),database(STRING) "
         if include_isoform:
             base_dict["include"] = "yes"
         return base_dict
