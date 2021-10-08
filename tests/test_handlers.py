@@ -27,10 +27,19 @@ class TestUniprotHandler(AsyncTestCase):
 
 class TestFileHandler(AsyncTestCase):
     @tornado.testing.gen_test
-    def test_post(self):
-        with open(r"C:\Users\Toan Phung\Documents\GitHub\curtain\src\assets\DMSO_IN57.txt", "rt") as processed, open(r"C:\Users\Toan Phung\Documents\GitHub\curtain\src\assets\Rawdata.txt", "rt") as raw:
+    def test_put(self):
+        with open(r"C:\Users\toanp\WebstormProjects\curtain\docs\assets\DMSO_IN57.txt", "rt") as processed, \
+                open(r"C:\Users\toanp\WebstormProjects\curtain\docs\assets\Rawdata.txt", "rt") as raw:
             res = requests.put("http://localhost:8000/file_data", data=json_encode({"password": "test", "processed": processed.read(),
                "raw": raw.read()}), headers={"Content-Type": "multiplepart/form-data"})
+            print(res.text)
+
+    @tornado.testing.gen_test
+    def test_post(self):
+        res = requests.post("http://localhost:8000/file_data",
+                           data=json_encode({"password": "", "id": "09b085d2-09ef-43f8-8709-1c5645442969"}),
+                           headers={"Content-Type": "multiplepart/form-data"})
+        print(res.text)
 
 
 class TestStringDBGetIDHandler(AsyncTestCase):

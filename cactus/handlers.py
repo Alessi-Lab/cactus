@@ -1,4 +1,8 @@
+import json
+from uuid import uuid4
+
 import bcrypt as bcrypt
+from sqlalchemy.exc import NoResultFound
 from tornado.escape import json_decode
 from tornado.web import RequestHandler
 from tornado_sqlalchemy import SessionMixin, as_future
@@ -6,6 +10,7 @@ from tornado_sqlalchemy import SessionMixin, as_future
 from cactus.database import File
 from stringdb.api import StringDB
 from uniprot.parser import UniprotSequence, UniprotParser
+
 
 class BaseHandler(RequestHandler):
     def set_default_headers(self):
@@ -71,14 +76,32 @@ class FileHandler(SessionMixin, BaseHandler):
             if "password" in req:
                 if req["password"]:
                     hash = bcrypt.hashpw(req["password"].encode("utf-8"), bcrypt.gensalt())
-
-            count = await as_future(session.query(File).count)
-            print(count)
-            f = File(password=hash, filename="test.txt")
+            uni = str(uuid4())
+            with open(f"files/{uni}.json", "wb") as data:
+                data.write(self.request.body)
+            f = File(password=hash, filename=uni)
 
             session.add(f)
             session.commit()
-            count = await as_future(session.query(File).count)
-            print(count)
-            print(f)
-            self.write(str(count))
+            self.write(uni)
+
+    async def post(self):
+        with self.make_session() as session:
+            req = json_decode(self.request.body)
+            try:
+                f = session.query(File).filter(File.filename == req["id"]).one()
+                if f.password != "":
+                    if req["password"]:
+                        if bcrypt.checkpw(req["password"].encode("utf-8"), f.password.encode("utf-8")):
+                            with open(f"files/{f.filename}.json", "rb") as d:
+                                self.write(d.read())
+                        else:
+                            self.write({"data": "not found"})
+                    else:
+                        self.write({"data": "not found"})
+                else:
+                    with open(f"files/{f.filename}.json", "rb") as d:
+                        self.write(d.read())
+
+            except NoResultFound:
+                self.write({"data": "not found"})
