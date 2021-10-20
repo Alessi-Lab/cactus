@@ -21,7 +21,6 @@ settings = {
     #"x-header": True
     # "cookie_secret": "IVM/jkpE+1A4We2P/hVxkHe8EW8mW3TR574hEpCnuGrU3H5trJCSckecA9e2zYthBbI=",
     # "xsrf_cookies": True,
-
 }
 
 if __name__ == "__main__":
