@@ -8,6 +8,7 @@ from tornado.web import RequestHandler
 from tornado_sqlalchemy import SessionMixin, as_future
 
 from cactus.database import File
+from proteomicsdb.api import ProteomicsDB
 from stringdb.api import StringDB
 from uniprot.parser import UniprotSequence, UniprotParser
 
@@ -50,6 +51,14 @@ class StringDBInteractionHandler(BaseHandler):
         params = json_decode(self.request.body)
         s = StringDB()
         res = await s.get_interaction(params["id"], params["species"], params["network"])
+        self.write(res)
+
+
+class ProteomicsDBExpressionHandler(BaseHandler):
+    async def post(self):
+        params = json_decode(self.request.body)
+        p = ProteomicsDB()
+        res = await p.get_expression(params["id"])
         self.write(res)
 
 

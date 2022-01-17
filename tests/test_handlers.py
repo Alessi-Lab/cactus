@@ -53,3 +53,15 @@ class TestStringDBGetIDHandler(AsyncTestCase):
             headers={"Content-Type": "application/x-json"},
             body=json_encode(data))
         print(response.body)
+
+class TestProteomicsDBGetExpressionHandler(AsyncTestCase):
+    @tornado.testing.gen_test
+    def test_post(self):
+        client = AsyncHTTPClient()
+        data = {"id": "P00533"}
+        response = yield client.fetch(
+            "http://localhost:8000/proteomics/expression",
+            method="POST",
+            headers={"Content-Type": "application/x-json"},
+            body=json_encode(data))
+        print(response.body)
