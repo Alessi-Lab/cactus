@@ -3,6 +3,7 @@ from tornado.testing import AsyncTestCase, gen_test
 
 from stringdb.api import StringDB
 from proteomicsdb.api import ProteomicsDB
+from interactome_atlas.api import InteractomeAtlas
 
 class TestStringDB(AsyncTestCase):
     @gen_test
@@ -27,3 +28,10 @@ class TestProteomicsDB(AsyncTestCase):
         p = ProteomicsDB()
         res = yield p.get_expression("P00533")
         print(json_decode(res)["d"]["results"][0])
+
+class TestInteractomeAtlas(AsyncTestCase):
+    @gen_test
+    def test_get_interactome(self):
+        i = InteractomeAtlas()
+        res = yield i.get_interactions("COL4A3BP")
+        print(json_decode(json_decode(res))["all_interactions"])
