@@ -7,7 +7,7 @@ from tornado.ioloop import IOLoop
 from tornado.web import Application, StaticFileHandler
 from tornado.options import define, options
 from cactus.handlers import MainHandler, UniprotHandler, FileHandler, StringDBGetIDHandler, StringDBInteractionHandler, \
-    ProteomicsDBExpressionHandler
+    ProteomicsDBExpressionHandler, InteractomeAtlasHandler
 
 if sys.platform.startswith("win32"):
     database_url = "sqlite:///sql.db?check_same_thread=False"
@@ -37,7 +37,8 @@ if __name__ == "__main__":
             (r"/string/getid", StringDBGetIDHandler),
             (r"/string/enrichment", StringDBGetIDHandler),
             (r"/string/interaction", StringDBInteractionHandler),
-            (r"/proteomics/expression", ProteomicsDBExpressionHandler)
+            (r"/proteomics/expression", ProteomicsDBExpressionHandler),
+            (r"/interactome/interact", InteractomeAtlasHandler)
             # (r"/static", StaticFileHandler, dict(path=settings['static_path']))
         ])
     server = tornado.httpserver.HTTPServer(app)
