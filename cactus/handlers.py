@@ -8,6 +8,7 @@ from tornado.web import RequestHandler
 from tornado_sqlalchemy import SessionMixin, as_future
 
 from cactus.database import File
+from interactome_atlas.api import InteractomeAtlas
 from proteomicsdb.api import ProteomicsDB
 from stringdb.api import StringDB
 from uniprot.parser import UniprotSequence, UniprotParser
@@ -61,6 +62,12 @@ class ProteomicsDBExpressionHandler(BaseHandler):
         res = await p.get_expression(params["id"])
         self.write(res)
 
+class InteractomeAtlasHandler(BaseHandler):
+    async def post(self):
+        params = json_decode(self.request.body)
+        p = InteractomeAtlas()
+        res = await p.get_interactions(params["id"])
+        self.write(res)
 
 class UniprotHandler(BaseHandler):
     def post(self):
