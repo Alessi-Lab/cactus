@@ -181,17 +181,6 @@ pymysql = ["pymysql (<1)", "pymysql"]
 sqlcipher = ["sqlcipher3-binary"]
 
 [[package]]
-name = "supervisor"
-version = "4.2.4"
-description = "A system for controlling process state under UNIX"
-category = "main"
-optional = false
-python-versions = "*"
-
-[package.extras]
-testing = ["pytest", "pytest-cov"]
-
-[[package]]
 name = "tornado"
 version = "6.1"
 description = "Tornado is a Python web framework and asynchronous networking library, originally developed at FriendFeed."
@@ -227,7 +216,7 @@ socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "6d7c6f3f557c4017bba6ffb3cd47adf5073d85c21afdc882975cb9cb1f937300"
+content-hash = "efa34ad61b0e1a7c904dec6337b2a98f5b183a6565ff55b8d2c32a9b51e2eead"
 
 [metadata.files]
 alembic = [
@@ -478,10 +467,6 @@ sqlalchemy = [
     {file = "SQLAlchemy-1.4.31-cp39-cp39-win32.whl", hash = "sha256:289465162b1fa1e7a982f8abe59d26a8331211cad4942e8031d2b7db1f75e649"},
     {file = "SQLAlchemy-1.4.31-cp39-cp39-win_amd64.whl", hash = "sha256:9e4fb2895b83993831ba2401b6404de953fdbfa9d7d4fa6a4756294a83bbc94f"},
     {file = "SQLAlchemy-1.4.31.tar.gz", hash = "sha256:582b59d1e5780a447aada22b461e50b404a9dc05768da1d87368ad8190468418"},
-]
-supervisor = [
-    {file = "supervisor-4.2.4-py2.py3-none-any.whl", hash = "sha256:bbae57abf74e078fe0ecc9f30068b6da41b840546e233ef1e659a12e4c875af6"},
-    {file = "supervisor-4.2.4.tar.gz", hash = "sha256:40dc582ce1eec631c3df79420b187a6da276bbd68a4ec0a8f1f123ea616b97a2"},
 ]
 tornado = [
     {file = "tornado-6.1-cp35-cp35m-macosx_10_9_x86_64.whl", hash = "sha256:d371e811d6b156d82aa5f9a4e08b58debf97c302a35714f6f45e35139c332e32"},
