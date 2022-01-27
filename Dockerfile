@@ -7,17 +7,21 @@ WORKDIR /app
 RUN apt-get -y update
 RUN apt-get -y upgrade
 RUN apt-get -y install supervisor
+
 RUN apt-get -y install git
 RUN apt-get -y install
 RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
-
+RUN export PATH="$HOME/.poetry/bin:${PATH}"
+RUN service supervisor stop
+RUN service supervisor start
 RUN git clone https://github.com/noatgnu/cactus.git
-
+RUN supervisord -c /app/cactus/super.docker.conf
 WORKDIR /app/cactus
 RUN $HOME/.poetry/bin/poetry --version
 RUN $HOME/.poetry/bin/poetry install
 RUN $HOME/.poetry/bin/poetry run alembic downgrade base
 RUN $HOME/.poetry/bin/poetry run alembic upgrade head
-RUN supervisord -c /app/cactus/super.conf
-RUN top
+RUN ps aux | grep supervisor
+RUN supervisorctl status
+
 RUN supervisorctl restart cactus:*
