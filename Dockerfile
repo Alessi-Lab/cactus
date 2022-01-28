@@ -3,6 +3,8 @@ FROM python:3.10-bullseye
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 WORKDIR /app
+EXPOSE 8001
+EXPOSE 8002
 
 RUN apt-get -y update
 RUN apt-get -y upgrade
@@ -23,6 +25,3 @@ RUN alembic downgrade base
 RUN alembic upgrade head
 
 RUN ps aux | grep supervisor
-RUN supervisorctl status
-
-RUN supervisorctl restart cactus:*
