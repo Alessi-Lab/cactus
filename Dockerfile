@@ -15,7 +15,7 @@ RUN apt-get -y install nginx
 RUN git clone https://github.com/noatgnu/cactus.git
 WORKDIR /app/cactus
 RUN service nginx stop
-CMD ["cp", "nginx.docker.conf", "/etc/nginx/nginx.conf"]
+CMD ["cp", "/app/cactus/nginx.docker.conf", "/etc/nginx/nginx.conf"]
 RUN pip3 install -r requirements.txt
 RUN alembic downgrade base
 RUN alembic upgrade head
