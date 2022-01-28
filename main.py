@@ -26,7 +26,8 @@ settings = {
 
 if __name__ == "__main__":
     tornado.options.parse_command_line()
-    rout = os.getenv("handlers_route", r'(localhost|127\.0\.0\.1|62\.75\.251\.157|curtain\.proteo\.info|www\.conducto\.me|conducto\.me)')
+    rout = os.getenv("handlers_route",
+                     r'(localhost|127\.0\.0\.1|62\.75\.251\.157|curtain\.proteo\.info|www\.conducto\.me|conducto\.me)')
     app = Application(db=SQLAlchemy(database_url))
     app.add_handlers(
         rout,

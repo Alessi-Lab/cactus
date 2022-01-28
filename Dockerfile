@@ -28,9 +28,11 @@ RUN alembic upgrade head
 
 RUN apt-get -y install supervisor
 RUN service supervisor stop
-CMD ["supervisord", "-n", "-c", "/app/cactus/super.docker.conf"]
 
 EXPOSE 8000
 EXPOSE 8001
 EXPOSE 80
-CMD ["bash"]
+
+CMD ["supervisord", "-n", "-c", "/app/cactus/super.docker.conf"]
+
+
