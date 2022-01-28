@@ -21,7 +21,7 @@ RUN apt-get -y install supervisor
 RUN service supervisor stop
 
 CMD ["supervisord", "-c", "/app/cactus/super.docker.conf"]
-CMD ["nginx", "-c", "/app/cactus/nginx.conf"]
+CMD ["nginx", "-c", "/app/cactus/nginx.docker.conf"]
 RUN service nginx restart
 EXPOSE 8001
 EXPOSE 8002
