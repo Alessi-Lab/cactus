@@ -16,7 +16,7 @@ WORKDIR /app/cactus
 RUN pip3 install -r requirements.txt
 RUN apt-get -y install supervisor
 RUN service supervisor stop
-RUN service supervisor start
+
 RUN supervisord -c /app/cactus/super.docker.conf
 
 RUN alembic downgrade base
