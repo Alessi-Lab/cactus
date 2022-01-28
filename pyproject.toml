@@ -6,7 +6,7 @@ authors = ["Toan Phung <toan.phungkhoiquoctoan@gmail.com>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = ">=3.9,<4.0"
 requests = "^2.27.1"
 pandas = "^1.4.0"
 tornado = "^6.1"

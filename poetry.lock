@@ -215,8 +215,8 @@ socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 
 [metadata]
 lock-version = "1.1"
-python-versions = "^3.9"
-content-hash = "efa34ad61b0e1a7c904dec6337b2a98f5b183a6565ff55b8d2c32a9b51e2eead"
+python-versions = ">=3.9,<4.0"
+content-hash = "09bcc11e76b3b53230a333634349b41ceabf1ba0244e337015ed75b6713a1c9e"
 
 [metadata.files]
 alembic = [
