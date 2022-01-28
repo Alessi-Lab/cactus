@@ -19,16 +19,16 @@ RUN mkdir /app/nginx
 RUN touch /app/nginx/error.log
 RUN touch /app/nginx/access.log
 RUN cp nginx.docker.conf /etc/nginx/nginx.conf
-
 RUN service nginx reload
+
 RUN pip3 install -r requirements.txt
+
 RUN alembic downgrade base
 RUN alembic upgrade head
 
 RUN apt-get -y install supervisor
 RUN service supervisor stop
-CMD ["supervisord", "-c", "/app/cactus/super.docker.conf"]
-RUN service supervisor restart
+CMD ["supervisord", "-n", "-c", "/app/cactus/super.docker.conf"]
 
 EXPOSE 8000
 EXPOSE 8001
