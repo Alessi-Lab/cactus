@@ -12,14 +12,17 @@ RUN apt-get -y upgrade
 RUN apt-get -y install git
 RUN apt-get -y install nginx
 
-RUN git clone https://github.com/noatgnu/cactus.git
+RUN git clone https://github.com/noatgnu/cactus.git temp
+
+RUN cp -R /app/temp /app/cactus
+
 WORKDIR /app/cactus
 
 RUN mkdir /app/nginx
 RUN touch /app/nginx/error.log
 RUN touch /app/nginx/access.log
 RUN cp nginx.docker.conf /etc/nginx/nginx.conf
-RUN service nginx reload
+
 
 RUN pip3 install -r requirements.txt
 
@@ -32,7 +35,11 @@ RUN service supervisor stop
 EXPOSE 8000
 EXPOSE 8001
 EXPOSE 80
-
-CMD ["supervisord", "-n", "-c", "/app/cactus/super.docker.conf"]
+#RUN supervisord -n -c /app/cactus/super.docker.conf
+RUN cp /app/cactus/super.docker.conf /etc/supervisor/supervisord.conf
+RUN service supervisor restart
+RUN service nginx restart
+#CMD ["service", "nginx", "restart"]
+CMD ["bash"]
 
 
