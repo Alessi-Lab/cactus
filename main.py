@@ -39,7 +39,14 @@ if __name__ == "__main__":
             (r"/string/enrichment", StringDBGetIDHandler),
             (r"/string/interaction", StringDBInteractionHandler),
             (r"/proteomics/expression", ProteomicsDBExpressionHandler),
-            (r"/interactome/interact", InteractomeAtlasHandler)
+            (r"/interactome/interact", InteractomeAtlasHandler),
+            (r"/api/uniprot", UniprotHandler),
+            (r"/api/file_data", FileHandler),
+            (r"/api/string/getid", StringDBGetIDHandler),
+            (r"/api/string/enrichment", StringDBGetIDHandler),
+            (r"/api/string/interaction", StringDBInteractionHandler),
+            (r"/api/proteomics/expression", ProteomicsDBExpressionHandler),
+            (r"/api/interactome/interact", InteractomeAtlasHandler)
             # (r"/static", StaticFileHandler, dict(path=settings['static_path']))
         ])
     server = tornado.httpserver.HTTPServer(app)
