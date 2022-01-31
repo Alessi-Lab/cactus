@@ -40,6 +40,7 @@ if __name__ == "__main__":
             (r"/string/interaction", StringDBInteractionHandler),
             (r"/proteomics/expression", ProteomicsDBExpressionHandler),
             (r"/interactome/interact", InteractomeAtlasHandler),
+            (r"/api", MainHandler),
             (r"/api/uniprot", UniprotHandler),
             (r"/api/file_data", FileHandler),
             (r"/api/string/getid", StringDBGetIDHandler),
