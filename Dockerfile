@@ -1,4 +1,4 @@
-FROM python:3.10-bullseye-slim
+FROM python:3.10-bullseye
 LABEL maintainer="tphung001@dundee.ac.uk"
 
 ARG BUILD_DATE
@@ -25,7 +25,6 @@ RUN apt-get -y install supervisor
 RUN service supervisor stop
 EXPOSE 8000
 EXPOSE 8001
-EXPOSE 80
 CMD ["bash", "/app/cactus/start.sh"]
 
 

@@ -1,6 +1,5 @@
 #!/bin/bash
 
-service nginx stop
+service nginx restart
 nginx -g "daemon off;"
-service nginx start
 supervisord -n -c /app/cactus/super.docker.conf
