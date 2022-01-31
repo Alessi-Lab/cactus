@@ -1,4 +1,8 @@
-FROM python:3.10-bullseye
+FROM python:3.10-bullseye-slim
+LABEL maintainer="tphung001@dundee.ac.uk"
+
+ARG BUILD_DATE
+LABEL build-date=$BUILD_DATE
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
