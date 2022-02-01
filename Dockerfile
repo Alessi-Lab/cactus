@@ -6,6 +6,7 @@ LABEL build-date=$BUILD_DATE
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
+ENV CACTUS docker
 WORKDIR /app
 RUN apt-get -y update
 RUN apt-get -y upgrade
@@ -14,6 +15,7 @@ RUN apt-get -y install nginx
 RUN git clone https://github.com/noatgnu/cactus.git temp
 RUN cp -R /app/temp /app/cactus
 WORKDIR /app/cactus
+RUN mkdir files
 RUN mkdir /app/nginx
 RUN touch /app/nginx/error.log
 RUN touch /app/nginx/access.log
