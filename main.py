@@ -10,13 +10,13 @@ from cactus.handlers import MainHandler, UniprotHandler, FileHandler, StringDBGe
     ProteomicsDBExpressionHandler, InteractomeAtlasHandler
 
 if os.getenv("CACTUS") == "docker":
-    database_url = "sqlite:////app/cactus/sql.db?check_same_thread=False"
+    database_url = "sqlite:////app/cactus/db/sql.db?check_same_thread=False"
 else:
     if sys.platform.startswith("win32"):
-        database_url = "sqlite:///sql.db?check_same_thread=False"
+        database_url = "sqlite:///db/sql.db?check_same_thread=False"
         asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
     else:
-        database_url = "sqlite:////root/cactus/sql.db?check_same_thread=False"
+        database_url = "sqlite:////root/cactus/db/sql.db?check_same_thread=False"
 
 define("port", default=8000, help="Port number")
 

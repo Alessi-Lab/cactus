@@ -3,7 +3,7 @@ from logging.config import fileConfig
 
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
-
+import os
 from alembic import context
 
 # this is the Alembic Config object, which provides
@@ -20,11 +20,14 @@ fileConfig(config.config_file_name)
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-if sys.platform.startswith("win32"):
-    database_url = "sqlite:///sql.db"
-
+if os.getenv("CACTUS") == "docker":
+    database_url = "sqlite:////app/cactus/db/sql.db?check_same_thread=False"
 else:
-    database_url = "sqlite:////root/cactus/sql.db"
+    if sys.platform.startswith("win32"):
+        database_url = "sqlite:///db/sql.db"
+
+    else:
+        database_url = "sqlite:////root/cactus/db/sql.db"
 
 db = SQLAlchemy(database_url)
 
