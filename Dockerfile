@@ -16,7 +16,6 @@ RUN git clone https://github.com/noatgnu/cactus.git temp
 RUN cp -R /app/temp /app/cactus
 WORKDIR /app/cactus
 RUN mkdir /app/cactus/db
-RUN cp /app/cactus/sql.db /app/cactus/db/sql.db
 RUN mkdir files
 RUN mkdir /app/nginx
 RUN touch /app/nginx/error.log
