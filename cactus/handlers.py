@@ -59,7 +59,7 @@ class ProteomicsDBExpressionHandler(BaseHandler):
     async def post(self):
         params = json_decode(self.request.body)
         p = ProteomicsDB()
-        res = await p.get_expression(params["id"])
+        res = await p.get_expression(params["id"], params["tissue_type"])
         self.write(res)
 
 class InteractomeAtlasHandler(BaseHandler):
