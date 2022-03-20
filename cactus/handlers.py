@@ -129,5 +129,5 @@ class NetphosHandler(SessionMixin, BaseHandler):
         req = json_decode(self.request.body)
         with open("/root/temp/"+req["id"], "wt") as fastaFile:
             fastaFile.write(req["fasta"])
-        data = netphos.api.run("/root/api-1.0/ape", "/root/temp/"+req["id"])
+        data = netphos.api.run("/root/ape-1.0/ape", "/root/temp/"+req["id"])
         self.write({"data": data})
