@@ -11,8 +11,10 @@ from cactus.database import File
 from interactome_atlas.api import InteractomeAtlas
 from proteomicsdb.api import ProteomicsDB
 from stringdb.api import StringDB
+import netphos.api
 from uniprot.parser import UniprotSequence, UniprotParser
 
+settings = {}
 
 class BaseHandler(RequestHandler):
     def set_default_headers(self):
@@ -121,3 +123,11 @@ class FileHandler(SessionMixin, BaseHandler):
 
             except NoResultFound:
                 self.write({"data": "not found"})
+
+class NetphosHandler(SessionMixin, BaseHandler):
+    def post(self):
+        req = json_decode(self.request.body)
+        with open("/root/temp/"+req["id"], "wt") as fastaFile:
+            fastaFile.write(req["fasta"])
+        data = netphos.api.run("/root/api-1.0/ape", "/root/temp/"+req["id"])
+        self.write({"data": data})
