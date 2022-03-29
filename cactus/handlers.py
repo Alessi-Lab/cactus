@@ -13,6 +13,14 @@ from proteomicsdb.api import ProteomicsDB
 from stringdb.api import StringDB
 import netphos.api
 from uniprot.parser import UniprotSequence, UniprotParser
+import json
+
+file_config = "/root/cactus/config.json"
+#config_file_docker = "/app/cactus/config.docker.json"
+
+configuration = {}
+with open(file_config, "rb") as con:
+    configuration = json.load(con)
 
 settings = {}
 
@@ -127,7 +135,7 @@ class FileHandler(SessionMixin, BaseHandler):
 class NetphosHandler(SessionMixin, BaseHandler):
     def post(self):
         req = json_decode(self.request.body)
-        with open("/root/temp/"+req["id"], "wt") as fastaFile:
+        with open(configuration["netphos-temp"]+req["id"], "wt") as fastaFile:
             fastaFile.write(req["fasta"])
-        data = netphos.api.run("/root/ape-1.0/ape", "/root/temp/"+req["id"])
+        data = netphos.api.run(configuration["netphos"] + "/ape", configuration["netphos-temp"]+req["id"])
         self.write({"data": data})
