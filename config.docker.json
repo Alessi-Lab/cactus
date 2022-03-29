@@ -1,6 +1,6 @@
 {
   "route": "(localhost|127\.0\.0\.1|62\.75\.251\.157|curtain\.proteo\.info|www\.conducto\.me|conducto\.me)",
   "database_url": "sqlite:///sql.db?check_same_thread=False",
-  "netphos": "/app/cactus/netphos",
+  "netphos": "/app/netphos",
   "netphos-temp": "/app/cactus/files"
 }
