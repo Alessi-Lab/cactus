@@ -1,11 +1,9 @@
 #!/bin/bash
-if [[ -z "${NETPHOS}" ]]; then
-  echo "${NETPHOS}"
-  if [ "${NETPHOS}" = "1" ]; then
-      cd /app/netphos/ &&
-      uncompress /app/netphos/netphos-3.1.Linux.tar.Z &&
-      tar -xvf /app/netphos/netphos-3.1.Linux.tar;
-  fi
+if [ "${NETPHOS}" = "1" ]; then
+    uncompress /app/netphos/netphos-3.1.Linux.tar.Z;
+    tar -xvf /app/netphos/netphos-3.1.Linux.tar;
+    rm /app/netphos/ape-1.0;
+    mv /app/cactus/ape.docker /app/netphos/ape-1.0/ape
 fi
 
 service nginx restart
