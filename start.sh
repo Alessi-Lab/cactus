@@ -1,6 +1,6 @@
 #!/bin/bash
-sed -i 's/file_config/#file_config/g' /app/cactus/cactus/handlers.py
-sed -i 's/#config_file_docker/file_config/g' /app/cactus/cactus/handlers.py
+sed -i '18s/file_config/#file_config/g' /app/cactus/cactus/handlers.py
+sed -i '19s/#config_file_docker/file_config/g' /app/cactus/cactus/handlers.py
 if [ "${NETPHOS}" = "1" ]; then
     cd /app/netphos;
     uncompress /app/netphos/netphos-3.1.Linux.tar.Z;
