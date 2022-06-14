@@ -21,7 +21,7 @@ fileConfig(config.config_file_name)
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
 if os.getenv("CACTUS") == "docker":
-    database_url = "sqlite:////app/cactus/db/sql.db?check_same_thread=False"
+    database_url = "sqlite:////root/app/cactus/db/sql.db?check_same_thread=False"
 else:
     if sys.platform.startswith("win32"):
         database_url = "sqlite:///db/sql.db"

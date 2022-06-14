@@ -16,7 +16,7 @@ else:
         database_url = "sqlite:///db/sql.db?check_same_thread=False"
         asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
     else:
-        database_url = "sqlite:////root/cactus/db/sql.db?check_same_thread=False"
+        database_url = "sqlite:////root/app/cactus/db/sql.db?check_same_thread=False"
 
 define("port", default=8000, help="Port number")
 
