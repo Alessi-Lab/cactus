@@ -25,12 +25,13 @@ settings = {
     #"x-header": True
     # "cookie_secret": "IVM/jkpE+1A4We2P/hVxkHe8EW8mW3TR574hEpCnuGrU3H5trJCSckecA9e2zYthBbI=",
     # "xsrf_cookies": True,
+    "xheaders": True
 }
 
 if __name__ == "__main__":
     tornado.options.parse_command_line()
     rout = os.getenv("handlers_route",
-                     r'(production_cactus|production_curtain|localhost|127\.0\.0\.1|62\.75\.251\.157|curtainptm\.proteo\.info|curtain\.proteo\.info|www\.conducto\.me|conducto\.me)')
+                     r'(curtain\.muttsu\.com|production_cactus|production_curtain|localhost|127\.0\.0\.1|62\.75\.251\.157|curtainptm\.proteo\.info|curtain\.proteo\.info|www\.conducto\.me|conducto\.me)')
     app = Application(db=SQLAlchemy(database_url))
     app.add_handlers(
         rout,
