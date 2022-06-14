@@ -23,8 +23,6 @@ RUN if [ "$NETPHOS" = "1"]; then \
     yes | cp -rf /app/cactus/ape.docker /app/netphos/ape-1.0/ape; \
     fi
 RUN cp -R /app/temp /app/cactus
-RUN sed -i 's/fil_config/#file_config/g' /app/cactus/cactus/handlers.py
-RUN sed -i 's/#config_file_docker/file_config/g' /app/cactus/cactus/handlers.py
 WORKDIR /app/cactus
 RUN mkdir /app/cactus/db
 RUN mkdir files
