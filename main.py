@@ -31,7 +31,7 @@ settings = {
 if __name__ == "__main__":
     tornado.options.parse_command_line()
     rout = os.getenv("handlers_route",
-                     r'(curtain\.muttsu\.com|production_cactus|production_curtain|localhost|127\.0\.0\.1|62\.75\.251\.157|curtainptm\.proteo\.info|curtain\.proteo\.info|www\.conducto\.me|conducto\.me)')
+                     r'(curtain\.omics\.quest|curtain\.muttsu\.com|production_cactus|production_curtain|localhost|127\.0\.0\.1|62\.75\.251\.157|curtainptm\.proteo\.info|curtain\.proteo\.info|www\.conducto\.me|conducto\.me)')
     app = Application(db=SQLAlchemy(database_url))
     app.add_handlers(
         rout,
@@ -57,7 +57,6 @@ if __name__ == "__main__":
             # (r"/static", StaticFileHandler, dict(path=settings['static_path']))
         ])
     server = tornado.httpserver.HTTPServer(app)
-    print(options.port)
     server.bind(options.port)
 
     server.start(1)
