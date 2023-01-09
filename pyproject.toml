@@ -1,22 +1,38 @@
 [tool.poetry]
-name = "cactus"
+name = "celsusdjango"
 version = "0.1.0"
-description = "Providing backend and proxy service for Curtain"
+description = ""
 authors = ["Toan Phung <toan.phungkhoiquoctoan@gmail.com>"]
-license = "MIT"
 
 [tool.poetry.dependencies]
-python = ">=3.9,<4.0"
-requests = "^2.27.1"
-pandas = "^1.4.0"
-tornado = "^6.1"
-SQLAlchemy = "^1.4.31"
-tornado-sqlalchemy = "^0.7.0"
-alembic = "^1.7.5"
-bcrypt = "^3.2.0"
+python = "^3.9"
+Django = "^4.1.1"
+djangorestframework = "^3.14.0"
+Markdown = "^3.4.1"
+django-filter = "^22.1"
+djangorestframework-simplejwt = "^5.2.1"
+drf-url-filters = "^0.5.1"
+django-cors-headers = "^3.13.0"
+pandas = "^1.5.0"
+uniprotparser = "^1.0.8"
+drf-flex-fields = "^1.0.0"
+drf-spectacular = "^0.24.2"
+django-sendfile2 = "^0.7.0"
+psycopg2 = "^2.9.5"
+gunicorn = "^20.1.0"
+django-allauth = "^0.51.0"
+google-api-python-client = "^2.70.0"
+google = "^3.0.0"
+django-rest-auth = "^0.9.5"
+dj-rest-auth = "^2.2.5"
 
 [tool.poetry.dev-dependencies]
+factory-boy = "^3.2.1"
+faker-biology = "^0.6.0"
+faker-web = "^0.3.1"
+
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+

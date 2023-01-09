@@ -1,5 +1,0 @@
-{
-  "database_url": "sqlite:///sql.db?check_same_thread=False",
-  "netphos": "/app/netphos/ape-1.0",
-  "netphos-temp": "/app/cactus/files/"
-}
